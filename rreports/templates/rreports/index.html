@@ -1,0 +1,53 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Translate Financial Research Reports</title>
+    <link href="{% static 'rreports/styles.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div class="translation-container">
+        <div class="text-area-container">
+            <h1>Enter the English Text Here</h1>
+            <form action="{% url 'rreports:index' %}" method="post" onsubmit="submitForm()">
+                {% csrf_token %}
+                <textarea id="myTextarea" name="myTextarea">{{original_text}}</textarea>
+                <br>
+                <select name="language">
+                    <option value="ml">Malayalam</option>
+                    <option value="ta">Tamil</option>
+                    <option value="hi">Hindi</option>
+                    <option value="te">Telugu</option>
+                    <option value="mr">Marathi</option>
+                </select>
+                <input type="submit" value="Translate">
+                <button type="button" onclick="closeForm()">Clear</button>
+            </form>
+        </div>
+        
+        <div class="text-area-container">
+            <h1>Translated Text</h1>
+            <div class="loader" id="loader"></div>
+            <div id="tr_id" contenteditable="true" name="translated_text" placeholder="Translated text goes here...">{{ translation|safe }}</div>
+        </div>
+    </div>
+
+    <script>
+        function submitForm() {
+        var loader = document.getElementById('loader');
+        loader.style.visibility = 'visible';
+        }
+
+        function closeForm() {
+            document.getElementById('myTextarea').value = '';
+            document.getElementById ('tr_id').innerHTML = '';
+        }
+    </script>
+
+    
+</body>
+</html>
+
