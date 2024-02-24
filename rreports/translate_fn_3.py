@@ -1,13 +1,9 @@
 import os
-from . import apikey
-os.environ['OPENAI_API_KEY'] = apikey.apikey
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] ="./rreports/numeric.json"
-
-
 import openai
 import re
 import requests
 
+openai.api_key = os.environ['OPENAI_API_KEY']
 GPT_MODEL = "gpt-3.5-turbo"
 EMBEDDING_MODEL = "text-embedding-ada-002"
 
@@ -26,7 +22,8 @@ import openai
 def llm_response(query, model="gpt-3.5-turbo", temperature=0.5):
     
     system_message = "You are an expert at simplifying English text."
-    user_message = f"Simplify the following text taken from a research report on a listed company. Retain text within parentheses unchanged: {query}"
+    user_message = f'''The following text taken from a research report on a listed company. 
+    Simplify the text for clarity and readability: {query}'''
 
     messages = [
         {"role": "system", "content": system_message},
@@ -159,19 +156,24 @@ def translate_text (text, target):
   translation = ''
 
   for para in paragraphs:
+    simple = ''
+    tr_text = ''
+
     if len(para)>100:
         simple = llm_response(para.lstrip(string.punctuation).lstrip())
-        
+
     else:
         simple = para.lstrip(string.punctuation).lstrip()
     
     simple = clean_text(simple)
-    if simple:
-      tr_text = translate_text_with_glossary('en', target, simple)
-    
-    if len(tr_text)<100:
-      tr_text = f"<b>{tr_text}</b>"
 
-    translation += tr_text
-    translation +="<br><br>"
+    if len(simple)>3:
+      tr_text = translate_text_with_glossary('en', target, simple)
+
+       
+    if tr_text:
+      if len(tr_text)<100:
+        tr_text = f"<b>{tr_text}</b>"
+      translation += tr_text + "<br><br>"
+
   return translation
