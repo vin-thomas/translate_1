@@ -48,7 +48,7 @@ def llm_response(query, model="gpt-3.5-turbo", temperature=0.5):
   #################################################
 
 from google.cloud import translate_v3 as translate
-
+client = translate.TranslationServiceClient()
 
 def translate_text_with_glossary(
     source,
@@ -65,7 +65,7 @@ def translate_text_with_glossary(
 
     Returns:
         The translated text."""
-    client = translate.TranslationServiceClient()
+    
     location = "us-central1"
     parent = f"projects/{project_id}/locations/{location}"
 
