@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'rreports_2',
     'rreports',
     'django.contrib.admin',
     'django.contrib.auth',
