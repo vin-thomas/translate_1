@@ -1,7 +1,14 @@
 /* static/rreports/styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Poppins',sans-serif !important;
+    /* font-family: 'Arial', sans-serif; */
     background-color: #fff;
     margin: 0;
 }
@@ -40,6 +47,7 @@ textarea {
     resize: none;
     overflow-y: auto;
     display:block;
+    resize: none;
 
 }
 
@@ -47,8 +55,9 @@ select {
     width: 25%;
     padding: 10px;
     margin-top: 10px;
+    margin-right: .5em;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 5px;
     background-color: white;
     transition: border-color 0.3s;
 }
@@ -63,7 +72,7 @@ input[type="submit"] {
     color: #fff;
     padding: 10px 15px;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px !important;
     cursor: pointer;
 }
 
@@ -76,7 +85,7 @@ button[type="button"] {
     color: #fff;
     padding: 10px 15px;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px !important;
     cursor: pointer;
 }
 
@@ -110,7 +119,7 @@ button[type="button"]:hover {
     background-color: white;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 5px;
     margin-top: 10px;
     min-height: 405px;
     width: 97%; /* Set width to 100% */
@@ -119,5 +128,12 @@ button[type="button"]:hover {
 
 }
 
+header .end {
+    display: flex;
+    justify-content:right;
+}
 
 
+/* header .end{ */
+
+/* } */

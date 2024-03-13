@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signup | dbtranslate</title>
+    <link rel="stylesheet" href="{% static 'css/form.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    {% if form.username.errors %}
+    <div class="alert-container sp">
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ form.username.errors }}
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
+    </div>
+    {% endif %} {% if form.first_name.errors %}
+    <div class="alert-container sp">
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ form.first_name.errors }}
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
+    </div>
+    {% endif %} {% if form.password1.errors %}
+    <div class="alert-container sp">
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ form.password1.errors }}
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
+    </div>
+    {% endif %} {% if form.password2.errors %}
+    <div class="alert-container sp">
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ form.password2.errors }}
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
+    </div>
+    {% endif %}
+    <div class="lcontainer">
+      <div class="lwrapper">
+        <div class="title"><span>Sign up</span></div>
+        <form method="post" action="{% url 'users:signup' %}">
+          {% csrf_token %}
+          <div class="lrow">
+            <i class="fas fa-user"></i>
+            {{ form.username }}
+          </div>
+          <div class="lrow">
+            <i class="fas fa-user-circle"></i>
+            {{ form.first_name }}
+          </div>
+          <div class="lrow">
+            <i class="fas fa-key"></i>
+            {{ form.password1 }}
+          </div>
+          <div class="lrow">
+            <i class="fas fa-asterisk"></i>
+            {{ form.password2 }}
+          </div>
+          <div class="lrow button" style="margin-top: 2em">
+            <input type="submit" value="Signup" />
+          </div>
+          <div class="signup-link">
+            Already a member? <a href="{% url 'users:login' %}">Login now</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

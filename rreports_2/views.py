@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from . import preprocess
 from . import translate
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-
+@login_required
 def index(request):
     text = ''
     message_1 = ''
