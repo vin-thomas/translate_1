@@ -26,9 +26,11 @@ body{
 }
 .lwrapper .title{
   height: 90px;
-  background: #0000ff;
+  margin-bottom: -1em;
+  background: #fff;
+  /* border: 1px solid lightgrey; */
   border-radius: 5px 5px 0 0;
-  color: #fff;
+  color: #0000ff;
   font-size: 30px;
   font-weight: 600;
   display: flex;
@@ -54,8 +56,8 @@ body{
   transition: all 0.3s ease;
 }
 form .lrow input:focus{
-  border-color: #136b97;
-  box-shadow: inset 0px 0px 2px 2px rgba(26, 129, 188, 0.25);
+  border-color: #0a31f3;
+  box-shadow: inset 0px 0px 2px 2px rgba(71, 80, 250, 0.538);
 }
 form .lrow input::placeholder{
   color: #999;
@@ -64,10 +66,10 @@ form .lrow input::placeholder{
   position: absolute;
   width: 47px;
   height: 100%;
-  color: #fff;
+  color: #0000ff;
   font-size: 18px;
-  background: #0000ff;
-  border: 1px solid #0000ff;
+  background: #fff;
+  border: 1px solid lightgrey;
   border-radius: 5px 0 0 5px;
   display: flex;
   align-items: center;
@@ -77,7 +79,7 @@ form .lrow input::placeholder{
   margin: -8px 0 20px 0;
 }
 .lwrapper form .pass a{
-  color: #0000ff;
+  color: #fff;
   font-size: 17px;
   text-decoration: none;
 }
@@ -90,11 +92,11 @@ form .lrow input::placeholder{
   font-weight: 500;
   padding-left: 0px;
   background: #0000ff;
-  border: 1px solid #0000ff;
+  border: 1px solid #fff;
   cursor: pointer;
 }
 form .button input:hover{
-  background: #1373b9;
+  background: #01037e;
 }
 .lwrapper form .signup-link{
   text-align: center;
@@ -115,7 +117,7 @@ form .signup-link a:hover{
   font-size: 17px;
 }
 .lwrapper form .login-link a{
-  color: #0000ff;
+  color: #0000ffff;
   text-decoration: none;
 }
 form .login-link a:hover{
