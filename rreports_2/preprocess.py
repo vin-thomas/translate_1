@@ -132,7 +132,7 @@ def preprocess(text, target):
     abbns = extract_uppercase_words(text)
     paragraphs = split_to_para(text)
     para_wise_text=''
-    for item in paragraphs:
+    for i, item in enumerate(paragraphs):
         if len(item)>100:
             item = replace_upper(item.lower(), abbns)
             item = clean_text(item)
@@ -145,5 +145,8 @@ def preprocess(text, target):
         print (item)
             
         item = translate.translate_text_with_glossary(item, target)
-        para_wise_text +=item + '<br><br>'
+        if i+1 == len(paragraphs):
+            para_wise_text += item
+        else:    
+            para_wise_text += item + '<br><br>'
     return para_wise_text

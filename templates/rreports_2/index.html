@@ -5,7 +5,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>dbtranslate</title>
+    <title>dbTranslate</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
     <link href="{%static 'css/style.css'%}" rel="stylesheet" />
     <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
@@ -13,18 +13,18 @@
   <body>
     <header>
       <div class="end">
-        <div class="pt-3"><h1>dbtranslate</h1></div>
-        <div class="row justify-content-end">
+        <div class="row justify-content-center align-items-center">
+        <div class="col pt-3"><h1 class="head-margin">dbTranslate</h1></div>
           {% if user.is_authenticated %}
           <!-- <div class="col"><h3>{{ user.first_name }}</h3></div> -->
-        <div class="col-4">
-          <a class="logout" href="{% url 'users:logout' %}">Log out</a>
+        <div class="col-2">
+          <a class="logout" style="font-size: small;" href="{% url 'users:logout' %}">Log out</a>
         </div>
         {% endif %}
       </div>
     </div>
     </header>
-    <hr>
+    <!-- <hr> -->
     <main>
       <form
         id="translationForm"
@@ -36,13 +36,8 @@
         <textarea
           id="textToTranslate"
           name="textToTranslate"
-          placeholder="Enter text with two blank lines after headlines and paragraphs"
-        >
-{{original_text}}</textarea>
-        <div class="clear">
-          <a title="Clear" onclick="closeForm()">✕</a>
+          placeholder="Enter text with two blank lines after headlines and paragraphs">{{original_text}}</textarea>
         </div>
-      </div>
         <div class="d-flex flex-row justify-content-start mb-3">
           <div class="custom-select me-2 p-0" style="width: 200px">
             <select name="language">
@@ -53,11 +48,14 @@
               <option value="mr">Marathi</option>
             </select>
           </div>
+          <div class="clear me-2">
+            <button title="Clear" onclick="closeForm()">clear</button>
+          </div>
           <div class="p-0"><input type="submit" value="Translate" /></div>
         </div>
       </form>
       <p id="translationOutput">{{translation|safe}}</p>
-      <div id="loader"></div>
+      <div class="loader"></div>
     </main>
 
     <script>
@@ -67,8 +65,8 @@
       }
 
       function submitForm() {
-        var loader = document.getElementById("loader");
-        loader.style.visibility = "visible";
+        var loader = document.querySelector(".loader");
+        loader.style.display = "block";
       }
 
       // function logout() {

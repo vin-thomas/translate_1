@@ -21,6 +21,10 @@ header {
     font-size: 24px;
 }
 
+hr{
+  margin-top: 0;
+}
+
 main {
     max-width: 600px;
     margin: 30px auto;
@@ -34,11 +38,12 @@ textarea {
     width: 100%;
     height: 400px;
     margin-bottom: 10px;
-    border-radius: 5px;
+    border-radius: 5px 5px 0px 5px;
     padding: 10px;
     box-sizing: border-box;
     resize: none;
     outline: none;
+    font-size: small;
 }
 
 p {
@@ -63,6 +68,12 @@ select:hover,
 select:focus {
     border-color: blue; 
 } */
+
+.head-margin{
+  /* font-size: xx-small; */
+  margin-left: 20% !important;
+  /* transform: translate(-50%, 0%) !important; */
+}
 
 
 /* The container must be positioned relative: */
@@ -112,9 +123,10 @@ select:focus {
   /* Style items (options): */
   .select-items {
     position: absolute;
-    background-color: #01037e;
-    border-radius: 5px;
-    border: 2px solid #01037e;
+    background-color: #ffffff;
+    border-radius: 0px 0px 5px 5px;
+    border: 2px solid #00f;
+    border-top: transparent;
     top: 100%;
     left: 0;
     right: 0;
@@ -122,7 +134,8 @@ select:focus {
   }
   
   .select-items div {
-    color: #ffffff;
+    color: #00f;
+    border-radius: 0;
   }
 
   /* Hide the items when the select box is closed: */
@@ -131,7 +144,8 @@ select:focus {
   }
   
   .select-items div:hover, .same-as-selected {
-    background-color: rgba(149, 149, 149, 0.475);
+    background-color: #00f4;
+    /* color: #fff; */
   }
 
 input[type="submit"] {
@@ -158,7 +172,7 @@ button {
 }
 
 input[type="submit"]:hover, button:hover {
-    background-color: #a07a45;
+    background-color: #01037e;
 }
 
 .logout{
@@ -172,40 +186,69 @@ input[type="submit"]:hover, button:hover {
 }
 
 .clear {
-    position: absolute;
-    z-index: 1;
-    bottom: 18px;
-    right: 8px;
+    /* position: absolute; */
+    /* z-index: 1; */
+    bottom: -8.5px;
+    right: 0px;
+    /* border: 1px solid grey; */
+    background-color: white;
+    border-radius: 0px 0px 5px 5px;
+    padding: 0px 3px 0px 3px;
 }
 
 .clear a {
     color:#0000003f !important;
     /* background-color: #000 !important; */
     cursor: pointer;
-    font-size: larger;
-    font-weight: bolder;
+    font-size: medium;
+    /* font-weight: bold; */
 }
 
 .clear a:hover{
     color: #000 !important;
 }
 
-#loader {
-    display: flex;
-    position: fixed;
-    top: 45%;
-    left: 47%;
-    border: 8px solid #f3f3f3;
-    border-top: 8px solid #3498db;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    visibility:hidden;
-    z-index: 1000;
-    animation: spin 1s linear infinite;
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: fit-content;
+  font-size: 17px;
+  font-family: monospace;
+  line-height: 1.4;
+  font-weight: bold;
+  --c: no-repeat linear-gradient(#000 0 0); 
+  background: var(--c),var(--c),var(--c),var(--c),var(--c),var(--c),var(--c);
+  background-size: calc(1ch + 1px) 100%;
+  border-bottom: 10px solid #0000; 
+  position: relative;
+  animation: l8-0 3s infinite linear;
+  clip-path: inset(-20px 0);
+  margin-top: 35px;
+  display: none;
 }
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+.loader::before {
+  content:"Loading";
+}
+.loader::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 14px;
+  background: #00f;
+  left: -10px;
+  bottom: 100%;
+  animation: l8-1 3s infinite linear;
+}
+@keyframes l8-0{
+   0%,
+   12.5% {background-position: calc(0*100%/6) 0   ,calc(1*100%/6)    0,calc(2*100%/6)    0,calc(3*100%/6)    0,calc(4*100%/6)    0,calc(5*100%/6)    0,calc(6*100%/6) 0}
+   25%   {background-position: calc(0*100%/6) 40px,calc(1*100%/6)    0,calc(2*100%/6)    0,calc(3*100%/6)    0,calc(4*100%/6)    0,calc(5*100%/6)    0,calc(6*100%/6) 0}
+   37.5% {background-position: calc(0*100%/6) 40px,calc(1*100%/6) 40px,calc(2*100%/6)    0,calc(3*100%/6)    0,calc(4*100%/6)    0,calc(5*100%/6)    0,calc(6*100%/6) 0}
+   50%   {background-position: calc(0*100%/6) 40px,calc(1*100%/6) 40px,calc(2*100%/6) 40px,calc(3*100%/6)    0,calc(4*100%/6)    0,calc(5*100%/6)    0,calc(6*100%/6) 0}
+   62.5% {background-position: calc(0*100%/6) 40px,calc(1*100%/6) 40px,calc(2*100%/6) 40px,calc(3*100%/6) 40px,calc(4*100%/6)    0,calc(5*100%/6)    0,calc(6*100%/6) 0}
+   75%   {background-position: calc(0*100%/6) 40px,calc(1*100%/6) 40px,calc(2*100%/6) 40px,calc(3*100%/6) 40px,calc(4*100%/6) 40px,calc(5*100%/6)    0,calc(6*100%/6) 0}
+   87.4% {background-position: calc(0*100%/6) 40px,calc(1*100%/6) 40px,calc(2*100%/6) 40px,calc(3*100%/6) 40px,calc(4*100%/6) 40px,calc(5*100%/6) 40px,calc(6*100%/6) 0}
+   100%  {background-position: calc(0*100%/6) 40px,calc(1*100%/6) 40px,calc(2*100%/6) 40px,calc(3*100%/6) 40px,calc(4*100%/6) 40px,calc(5*100%/6) 40px,calc(6*100%/6) 40px}
+}
+@keyframes l8-1{
+  100% {left:115%}
 }
