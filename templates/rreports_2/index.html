@@ -49,9 +49,9 @@
             </select>
           </div>
           <div class="clear me-2">
-            <button title="Clear" onclick="closeForm()">clear</button>
+            <a title="Clear" onclick="closeForm()">clear</a>
           </div>
-          <div class="p-0"><input type="submit" value="Translate" /></div>
+          <div class="p-0"><button id="submit_btn" type="submit">Translate</button></div>
         </div>
       </form>
       <p id="translationOutput">{{translation|safe}}</p>
@@ -67,6 +67,9 @@
       function submitForm() {
         var loader = document.querySelector(".loader");
         loader.style.display = "block";
+
+        document.getElementById("submit_btn").disabled = true;
+
       }
 
       // function logout() {

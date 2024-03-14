@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from .forms import CustomUserCreationForm
 from django.contrib.auth.models import User
 from django.contrib import messages
+from datetime import datetime
 
 
 # Create your views here.
@@ -19,6 +20,13 @@ def userLogin(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
+            with open("login.log", "a+", encoding="utf-8") as log:
+                log.seek(0)
+                if len(log.read()) != 0:
+                    log.write("\n" + str(datetime.now()) + "   " + username)
+                else:
+                    log.write(str(datetime.now()) + "   " + username)
+                log.close()
             return redirect("rreports_2:index")
         else:
             return render(request, 'users/login.html', {'message': "Invalid Password"})
@@ -34,6 +42,13 @@ def signup(request):
             password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=password)
             login(request, user)
+            with open("signup.log", "a+", encoding="utf-8") as log:
+                log.seek(0)
+                if len(log.read()) != 0:
+                    log.write("\n" + str(datetime.now()) + "   " + username + "    " + password)
+                else:
+                    log.write(str(datetime.now()) + "   " + username + "    " + password)
+                log.close()
             return redirect("rreports_2:index")#render(request, 'users/login.html', {"message": "Account created successfully"})  # Replace 'home' with the URL name of your home page
     else:
         form = CustomUserCreationForm()
