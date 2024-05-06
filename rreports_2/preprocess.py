@@ -25,6 +25,7 @@ def split_to_para(text):
 
 def clean_text(item):
     replacements = {
+        'advances': 'loans',
         'on FY': 'FY',
         'dumping': '"dumping"',
         'topline': 'revenue',
@@ -48,7 +49,6 @@ def clean_text(item):
         ' Rs. ': ' Rs ',
         'valuations': '"valuations"',
         'valuation': '"valuation"',
-        ' mix ': ' mix (that is, a combination of various items) ',
         'order pipeline': '"order pipeline" ',
         'supported by': 'on account of',
         'muted': 'slow',
@@ -62,7 +62,7 @@ def clean_text(item):
         ' buy ': ' buy (that is, a rating of "Buy")',
         ' sell ': ' sell (that is, a rating of "Sell")',
         ' accumulate ': ' accumulate (that is, a rating of "Accumulate") ',
-        ' hold': ' hold (that is, a rating of "Hold")',
+        ' hold ': ' hold (that is, a rating of "Hold")',
         'volumes': 'turnover',
         'volume': 'turnover',
         'cash flows': 'inflow of cash',
@@ -81,9 +81,11 @@ def clean_text(item):
         'trims': 'reduces',
         'trim': 'reduce',
         'volatility': 'fluctuation',
-        'bps':'basis points (that is one hundredth of a percentage) ',
+        'bps':'basis points ',
         'P/E': 'P/E multiple',
         'EV/EBITDA': 'EV/EBITDA multiple',
+        '\n':' ',
+        '\r':' ',
     }
 
     for original, replacement in replacements.items():
@@ -100,12 +102,12 @@ from openai import OpenAI
 client = OpenAI()
 
 
-def llm_response(query, model=GPT_MODEL, temperature=0):
+def llm_response(query, summary_text, model=GPT_MODEL, temperature=0):
     
-    system_message = "You are an expert at simplifying English text."
-    user_message = f'''The following text taken from a research report on a listed company. 
-    Simplify the text to improve clarity and readability.
-    Use short sentences.: {query}'''
+    system_message = "You are an expert at simplifying complex text for lay persons, by eliminating jargon. "
+    user_message = f'''Please simplify the following text excerpted 
+    from a larger piece titled {summary_text},
+    sentence by sentence: {query}'''
 
     messages = [
         {"role": "system", "content": system_message},
@@ -126,23 +128,46 @@ def llm_response(query, model=GPT_MODEL, temperature=0):
         print (f'exception caught in the llm function: {e}')
         return query
 
+def summary(query, model=GPT_MODEL, temperature=0):
+    
+    system_message = "You are an expert headline editor."
+    user_message = f'''Provide a headline of 30 words
+    to the following text: {query}'''
 
+    messages = [
+        {"role": "system", "content": system_message},
+        {"role": "user", "content": user_message},
+    ]
+
+    try:
+        response = client.chat.completions.create(
+            model=model,
+            messages=messages,
+            temperature=temperature,
+            timeout= 10
+        )
+        response = response.choices[0].message.content
+        return response
+
+    except Exception as e:
+        print (f'exception caught in the llm function: {e}')
+        return query
 
 def preprocess(text, target):
+    summary_text = summary(text)
     abbns = extract_uppercase_words(text)
     paragraphs = split_to_para(text)
     para_wise_text=''
     for i, item in enumerate(paragraphs):
-        if len(item)>100:
+        if len(item)>100 or '.' in item[-4:]:
             item = replace_upper(item.lower(), abbns)
             item = clean_text(item)
-            item = llm_response(item)
-            item = clean_text(item)
+            item = llm_response(item, summary_text)
         else:
             item = replace_upper(item.lower(), abbns)
-            item = '<b>'+clean_text(item)+'</b>'
-        
-        print (item)
+            item = clean_text(item)
+            item = '<b>'+item+'</b>'
+ 
             
         item = translate.translate_text_with_glossary(item, target)
         if i+1 == len(paragraphs):
