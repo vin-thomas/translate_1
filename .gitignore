@@ -1,3 +1,5 @@
 /rreports/__pycache__/
 /rreports_2/__pycache__/
 /users/__pycache__/
+/*.sqlite3
+/*.log
