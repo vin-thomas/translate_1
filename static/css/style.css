@@ -38,17 +38,27 @@ textarea {
     width: 100%;
     height: 400px;
     margin-bottom: 10px;
-    border-radius: 5px;
+    border-radius: 2px;
     padding: 10px;
     box-sizing: border-box;
     resize: none;
     outline: none;
     font-size: small;
-}
+    border: 1px dotted;
+    border-color: transparent transparent lightgrey transparent;
+    /* Hide the scrollbar
+    scrollbar-width: none; /* Firefox */
+    /* -ms-overflow-style: none; Internet Explorer and Edge */
+    /* ::-webkit-scrollbar { */
+      /* display: none; Chrome, Safari, Opera */
+    /* } */
+    /* Set other necessary styles for scrolling */
+    /* overflow: auto; */
+  }
 
 p {
     margin-top: 10px;
-    font-size: 12px;
+    font-size: small;
     line-height: 2;
 }
 
@@ -88,9 +98,9 @@ select:focus {
   
   .select-selected {
     background-color: transparent !important;
-    border: 2px solid !important;
-    border-color: black !important;
-    color: black;
+    border: 1px solid !important;
+    border-color: grey !important;
+    color: grey;
   }
   
   /* Style the arrow inside the select element: */
@@ -102,12 +112,12 @@ select:focus {
     width: 0;
     height: 0;
     border: 6px solid transparent;
-    border-color: black transparent transparent transparent;
+    border-color: grey transparent transparent transparent;
   }
   
   /* Point the arrow upwards when the select box is open (active): */
   .select-selected.select-arrow-active:after {
-    border-color: transparent transparent black transparent;
+    border-color: transparent transparent grey transparent;
     top: 10px;
   }
   
@@ -125,7 +135,7 @@ select:focus {
     position: absolute;
     background-color: #ffffff;
     border-radius: 0px 0px 5px 5px;
-    border: 2px solid black;
+    border: 1px solid grey;
     border-top: transparent;
     top: 100%;
     left: 0;
@@ -134,7 +144,7 @@ select:focus {
   }
   
   .select-items div {
-    color: black;
+    color: grey;
     border-radius: 0;
   }
 
@@ -222,45 +232,57 @@ input[type="submit"]:hover, button:hover, .clear a:hover {
 
 /* HTML: <div class="loader"></div> */
 .loader {
-  width: fit-content;
-  font-size: 17px;
-  font-family: monospace;
-  line-height: 1.4;
-  font-weight: bold;
-  --c: no-repeat linear-gradient(#000 0 0); 
-  background: var(--c),var(--c),var(--c),var(--c),var(--c),var(--c),var(--c);
-  background-size: calc(1ch + 1px) 100%;
-  border-bottom: 10px solid #0000; 
-  position: relative;
-  animation: l8-0 3s infinite linear;
-  clip-path: inset(-20px 0);
-  margin-top: 35px;
+  color: #00f;
+  width: 4px;
+  margin-top: 21px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  box-shadow: 19px 0 0 7px, 38px 0 0 3px, 57px 0 0 0;
+  transform: translateX(-13px);
+  animation: l21 .5s infinite alternate linear;
   display: none;
 }
-.loader::before {
-  content:"Loading";
+
+@keyframes l21 {
+  50%  {box-shadow: 19px 0 0 3px, 38px 0 0 7px, 57px 0 0 3px}
+  100% {box-shadow: 19px 0 0 0  , 38px 0 0 3px, 57px 0 0 7px}
 }
-.loader::after {
-  content: "";
-  position: absolute;
-  width: 10px;
-  height: 14px;
-  background: #00f;
-  left: -10px;
-  bottom: 100%;
-  animation: l8-1 3s infinite linear;
+
+
+/* Firefox (uncomment to work in Firefox, although other properties will not work!)  */
+/* * {
+  scrollbar-width: thin;
+  scrollbar-color: #397524 #DFE9EB;
+} */
+
+/* Chrome, Edge and Safari */
+*::-webkit-scrollbar {
+  height: 1px;
+  width: 1px;
 }
-@keyframes l8-0{
-   0%,
-   12.5% {background-position: calc(0*100%/6) 0   ,calc(1*100%/6)    0,calc(2*100%/6)    0,calc(3*100%/6)    0,calc(4*100%/6)    0,calc(5*100%/6)    0,calc(6*100%/6) 0}
-   25%   {background-position: calc(0*100%/6) 40px,calc(1*100%/6)    0,calc(2*100%/6)    0,calc(3*100%/6)    0,calc(4*100%/6)    0,calc(5*100%/6)    0,calc(6*100%/6) 0}
-   37.5% {background-position: calc(0*100%/6) 40px,calc(1*100%/6) 40px,calc(2*100%/6)    0,calc(3*100%/6)    0,calc(4*100%/6)    0,calc(5*100%/6)    0,calc(6*100%/6) 0}
-   50%   {background-position: calc(0*100%/6) 40px,calc(1*100%/6) 40px,calc(2*100%/6) 40px,calc(3*100%/6)    0,calc(4*100%/6)    0,calc(5*100%/6)    0,calc(6*100%/6) 0}
-   62.5% {background-position: calc(0*100%/6) 40px,calc(1*100%/6) 40px,calc(2*100%/6) 40px,calc(3*100%/6) 40px,calc(4*100%/6)    0,calc(5*100%/6)    0,calc(6*100%/6) 0}
-   75%   {background-position: calc(0*100%/6) 40px,calc(1*100%/6) 40px,calc(2*100%/6) 40px,calc(3*100%/6) 40px,calc(4*100%/6) 40px,calc(5*100%/6)    0,calc(6*100%/6) 0}
-   87.4% {background-position: calc(0*100%/6) 40px,calc(1*100%/6) 40px,calc(2*100%/6) 40px,calc(3*100%/6) 40px,calc(4*100%/6) 40px,calc(5*100%/6) 40px,calc(6*100%/6) 0}
-   100%  {background-position: calc(0*100%/6) 40px,calc(1*100%/6) 40px,calc(2*100%/6) 40px,calc(3*100%/6) 40px,calc(4*100%/6) 40px,calc(5*100%/6) 40px,calc(6*100%/6) 40px}
+*::-webkit-scrollbar-track {
+  border-radius: 0px;
+  background-color: #DFE9EB;
+  border: 10px dotted #FFFFFF;
 }
-@keyframes l8-1{
-  100% {left:115%}
+
+*::-webkit-scrollbar-track:hover {
+  background-color: black;
+}
+
+*::-webkit-scrollbar-track:active {
+  background-color: black;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 0px;
+  background-color: lightgrey;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: grey;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: grey;
 }
