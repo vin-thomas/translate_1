@@ -27,14 +27,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popups'
 
 # Application definition
 
 INSTALLED_APPS = [
     'users.apps.UsersConfig',
-    # 'users',
     'rreports_2',
-    'rreports',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -132,4 +131,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # LOGIN_REDIRECT_URL = '/rreports/'
 # LOGOUT_REDIRECT_URL = '/'
 
-LOGIN_URL = '/users/login'
+LOGIN_URL = '/account/login'

@@ -14,169 +14,55 @@ body{
 }
 .lcontainer{
   max-width: 440px;
-  padding: 0 20px;
-  margin: 30vh auto;
+  /* padding: 0 20px; */
+  min-height: 200px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: stretch;
 }
+
+.lcontainer > img {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* z-index: -1; */
+  height: 100%;
+  opacity: 2%;
+  padding: 20px;
+}
+
 .lwrapper{
-  width: 100%;
-  background: #fff;
+  min-width: 350px;
+  text-align: center;
   border-radius: 5px;
   /* box-shadow: 0px 4px 10px 1px rgba(0,0,0,0.1); */
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 10%;
+  padding: 25px;
+}
+
+.lwrapper > img {
+  width: 70%;
+  margin: 0 auto;
 }
 .lwrapper .title{
-  height: 90px;
-  margin-bottom: -1em;
-  background: #fff;
-  /* border: 1px solid lightgrey; */
-  border-radius: 5px 5px 0 0;
-  color: #0000ff;
+  color: #0b5394;
   font-size: 30px;
   font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.lwrapper form{
-  padding: 30px 25px 25px 25px;
-}
-.lwrapper form .lrow{
-  height: 45px;
-  margin-bottom: 15px;
-  position: relative;
-}
-.lwrapper form .lrow input{
-  height: 100%;
-  width: 100%;
-  outline: none;
-  padding-left: 60px;
-  border-radius: 5px;
-  border: 1px solid lightgrey;
-  font-size: 16px;
-  transition: all 0.3s ease;
-}
-form .lrow input:focus{
-  border-color: #0a31f3;
-  box-shadow: inset 0px 0px 2px 2px rgba(71, 80, 250, 0.538);
-}
-form .lrow input::placeholder{
-  color: #999;
-}
-.lwrapper form .lrow i{
-  position: absolute;
-  width: 47px;
-  height: 100%;
-  color: #0000ff;
-  font-size: 18px;
-  background: #fff;
-  border: 1px solid lightgrey;
-  border-radius: 5px 0 0 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.lwrapper form .pass{
-  margin: -8px 0 20px 0;
-}
-.lwrapper form .pass a{
-  color: #fff;
-  font-size: 17px;
-  text-decoration: none;
-}
-.lwrapper form .pass a:hover{
-  text-decoration: underline;
-}
-.lwrapper form .button input{
-  color: #fff;
-  font-size: 20px;
-  font-weight: 500;
-  padding-left: 0px;
-  background: #0000ff;
-  border: 1px solid #fff;
-  cursor: pointer;
-}
-form .button input:hover{
-  background: #01037e;
-}
-.lwrapper form .signup-link{
   text-align: center;
-  margin-top: 20px;
-  font-size: 17px;
-}
-.lwrapper form .signup-link a{
-  color: #0000ff;
-  text-decoration: none;
-}
-form .signup-link a:hover{
-  text-decoration: underline;
+  padding: 0;
+  margin: 0;
 }
 
-.lwrapper form .login-link{
-  text-align: center;
-  margin-top: 20px;
-  font-size: 17px;
-}
-.lwrapper form .login-link a{
-  color: #0000ffff;
-  text-decoration: none;
-}
-form .login-link a:hover{
-  text-decoration: underline;
-}
-
-
-/*Alert CSS*/
-.alert-container {
-  padding-top: 20px;
-  padding-bottom: 10px;
-  width: 100hw;
-  margin: 3vh auto;
-  text-align: center;
-  position: absolute; 
-  z-index: 1;
-  top: 10%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.sp {
-  width: unset;
-}
-
-.alert {
-  padding: .7143rem 1.071rem;
-  margin-bottom: 1.429rem;
-  border-radius: 2px;
-  border: 1px solid transparent;
-  color: #FFF
-}
-
-.alert.alert-square {
-  border-radius: 0
-}
-
-.alert .close {
-  position: relative
-}
-
-.alert.alert-dismissable,
-.alert.alert-dismissible {
-  padding-right: 2.5rem
-}
-
-.alert.alert-dismissable .close,
-.alert.alert-dismissible .close {
-  top: -2px;
-  right: -20px;
-  color: inherit
-}
-
-.alert.alert-primary {
-  background-color: #33f6b5 !important;
-  border-color: #21f3a3 !important;
-}
-
-.alert.alert-warning {
-  background-color: #fefe9c !important;
-  border-color: #fefe9c !important;
+.gbutton {
+  max-width: 80%;
+  margin: 0 auto;
 }

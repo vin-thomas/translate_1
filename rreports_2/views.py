@@ -7,7 +7,6 @@ from datetime import datetime
 # Create your views here.
 @login_required
 def index(request):
-
     text = ''
     message_1 = ''
     message_2 = ''

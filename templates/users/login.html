@@ -2,44 +2,56 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Login | dbtranslate</title> 
-    <link rel="stylesheet" href="{% static 'css/form.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | dbtranslate</title>
+    <link rel="stylesheet" href="{% static 'css/form.css' %}" />
+    <script src="https://accounts.google.com/gsi/client" async></script>
+    <script>
+      const authURL = "{% url 'users:gauth' %}";
+    </script>
   </head>
   <body>
     {% if message %}
     <div class="alert-container">
-        <div class="alert alert-primary alert-dismissible fade show" role="alert"> 
-          {{ message }}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
-        </div>
-    {% endif %}
-    <div class="lcontainer">    
-      <div class="lwrapper">
-        <div class="title"><span>Welcome</span></div>
-        <form action="{% url 'users:login' %}" method="post">
-          {% csrf_token %}
-          
-          <div class="lrow">
-            <i class="fas fa-user"></i>
-            <input type="text" placeholder="enter username" name="username" required>
-          </div>
-          <div class="lrow">
-            <i class="fas fa-lock"></i>
-            <input type="password" placeholder="enter password" name="password" required>
-          </div>
-          <!-- <div class="pass"><a href="#">Forgot password?</a></div> -->
-          <div class="lrow button" style="margin-top: 2em;">
-            <input type="submit" value="Login">
-          </div>
-          <div class="signup-link">Not a member? <a href="{% url 'users:signup' %}">Signup now</a></div>
-        </form>
+      <div class="alert alert-primary alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
       </div>
     </div>
+    {% endif %}
+    <div class="lcontainer">
+      <img src="{% static 'img/logo1.svg' %}" alt="">
+      <div class="lwrapper">
+        <img src="{% static 'img/logo.svg' %}" alt="">
+        <!-- <div class="title">Translate</div> -->
+        <div class="gbutton" id="gbutton">
+          <div
+            id="g_id_onload"
+            data-client_id="129500516432-6rbd9893voa71k8dgpbrqo3hfi02rnhv.apps.googleusercontent.com"
+            data-context="use"
+            data-ux_mode="popup"
+            data-login_uri="{% url 'users:gauth' %}"
+            data-nonce=""
+            data-itp_support="true"
+          ></div>
 
+          <div
+            class="g_id_signin"
+            data-type="standard"
+            data-shape="rectangular"
+            data-theme="outline"
+            data-text="continue_with"
+            data-size="large"
+            data-logo_alignment="left"
+          ></div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
