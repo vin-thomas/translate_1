@@ -13,7 +13,7 @@ const loader = document.querySelector(".loader");
 document.getElementById("translationForm").addEventListener("submit", (e) => {
     e.preventDefault();
     if(textarea.value != '') {
-    loader.style.display = "block";
+    loader.style.visibility = "visible";
     document.getElementById("submit_btn").disabled = true;
 
     text = textarea.value;
@@ -37,7 +37,7 @@ document.getElementById("translationForm").addEventListener("submit", (e) => {
     })
     .then(data => {
         outputArea.innerHTML = '';
-        loader.style.display = "none";
+        loader.style.visibility = "hidden";
         outputArea.innerHTML = data.translation;
         document.getElementById("submit_btn").disabled = false;
     })
