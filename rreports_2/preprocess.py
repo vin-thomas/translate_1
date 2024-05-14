@@ -172,6 +172,8 @@ def preprocess(text, target):
         item = translate.translate_text_with_glossary(item, target)
         if i+1 == len(paragraphs):
             para_wise_text += item
+            yield para_wise_text
         else:    
             para_wise_text += item + '<br><br>'
-    return para_wise_text
+            yield para_wise_text
+    # return para_wise_text
