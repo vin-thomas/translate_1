@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import JsonResponse
 from . import preprocess
 from . import translate
 from django.contrib.auth.decorators import login_required
@@ -7,16 +8,18 @@ from datetime import datetime
 # Create your views here.
 @login_required
 def index(request):
-    text = ''
-    message_1 = ''
-    message_2 = ''
-    message_3 = ''
+    return render(request, "rreports_2/index.html", {})
+
+
+def te(request):
     if request.method == 'POST':
-        text = request.POST.get('textToTranslate', '')
-        target = request.POST.get('language', '')
+        text = request.POST.get('text', '')
+        target = request.POST.get('lang', '')
+
+        print(text, target)
 
         if text:
-            message_1 = preprocess.preprocess(text, target)
+            translation = preprocess.preprocess(text, target)
         with open("usage.log", "a+", encoding="utf-8") as log:
             log.seek(0)
             if len(log.read()) != 0:
@@ -26,5 +29,7 @@ def index(request):
                 log.write(str(datetime.now()) + "   " +request.user.username + "    " +str(len(text)))
                 print("log 2")
             log.close()
-    return render(request, "rreports_2/index.html", 
-    {'original_text': text, 'translation': message_1})
+
+            print(translation)
+
+        return JsonResponse({'translation': translation})
