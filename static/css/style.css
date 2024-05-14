@@ -110,6 +110,22 @@ p {
 }
 
 
+.tools {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+@media screen and (max-width: 900px) {
+  .tools:last-child{
+    margin-left: auto;
+  }
+}
+
 /* The container must be positioned relative: */
 .custom-select {
     position: relative;
@@ -189,8 +205,8 @@ button {
     border: none;
     cursor: pointer;
     border-radius: 4px;
-    font-size: 16px;
-    width: 120px;
+    font-size: medium;
+    width: fit-content;
 }
 
 
@@ -205,10 +221,6 @@ button:active {
   box-shadow: 0 0 30px 1px #0b5394 inset;
 }
 
-
-.textcontainer {
-    position: relative;
-}
 
 .clear {
     /* position: relative; */
@@ -229,19 +241,19 @@ button:active {
   border: none !important;
   cursor: pointer;
   border-radius: 50% !important;
-  font-size: 16px !important;
+  font-size: medium !important;
   width: 120px !important;
 }
 
 .clear a:hover{
     color: #0b5394 !important;
-    background-color: #ffffff;
+    background-color: #f4f4f4;
 }
 
 .clear a:active{
   color: #e5dfdf !important;
   background-color: #ffffff;
-  box-shadow: 0 0 3px 30px #e5dfdf inset;
+  box-shadow: 0 0 3px 30px #dfe0e5 inset;
 }
 
 hr{
