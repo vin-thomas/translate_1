@@ -17,16 +17,16 @@ def te(request):
         text = request.POST.get('text', '')
         target = request.POST.get('lang', '')
 
-        print(text, target)
+        # print(text, target)
 
         translation = None
         if text:
             translation = StreamingHttpResponse(preprocess.preprocess(text, target), content_type='text/plain')
-        with open("usage.log", "a+", encoding="utf-8") as log:
-            log.seek(0)
-            if len(log.read()) != 0:
-                log.write("\n" + str(datetime.now()) + "   " +request.user.username + "    " +str(len(text)))
-            else:
-                log.write(str(datetime.now()) + "   " +request.user.username + "    " +str(len(text)))
-            log.close()
+            with open("usage.log", "a+", encoding="utf-8") as log:
+                log.seek(0)
+                if len(log.read()) != 0:
+                    log.write("\n" + str(datetime.now()) + "   " +request.user.username + "    " +str(len(text)))
+                else:
+                    log.write(str(datetime.now()) + "   " +request.user.username + "    " +str(len(text)))
+                log.close()
         return translation

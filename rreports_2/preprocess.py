@@ -157,7 +157,6 @@ def preprocess(text, target):
     summary_text = summary(text)
     abbns = extract_uppercase_words(text)
     paragraphs = split_to_para(text)
-    para_wise_text=''
     for i, item in enumerate(paragraphs):
         if len(item)>100 or '.' in item[-4:]:
             item = replace_upper(item.lower(), abbns)
@@ -171,9 +170,7 @@ def preprocess(text, target):
             
         item = translate.translate_text_with_glossary(item, target)
         if i+1 == len(paragraphs):
-            para_wise_text += item
-            yield para_wise_text
+            yield item
         else:    
-            para_wise_text += item + '<br><br>'
-            yield para_wise_text
+            yield item + '<br><br>'
     # return para_wise_text

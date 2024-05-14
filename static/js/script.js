@@ -36,6 +36,7 @@ document.getElementById("submit_btn").addEventListener("click", (e) => {
           if (!response.ok) {
             throw new Error("Network response was not ok.");
           }
+          outputArea.innerHTML = '';
           const reader = response.body.getReader();
           console.log("inside response of streamer");
           // Function to consume the streaming data
@@ -45,7 +46,7 @@ document.getElementById("submit_btn").addEventListener("click", (e) => {
               return;
             }
             const chunk = new TextDecoder().decode(value);
-            outputArea.innerHTML = '';
+            console.log(chunk);
             loader.style.visibility = "hidden";
             outputArea.innerHTML += chunk;
             document.getElementById("submit_btn").disabled = false;
