@@ -24,12 +24,8 @@ def te(request):
             log.seek(0)
             if len(log.read()) != 0:
                 log.write("\n" + str(datetime.now()) + "   " +request.user.username + "    " +str(len(text)))
-                print("log 1")
             else:
                 log.write(str(datetime.now()) + "   " +request.user.username + "    " +str(len(text)))
-                print("log 2")
             log.close()
-
-            print(translation)
 
         return JsonResponse({'translation': translation})
