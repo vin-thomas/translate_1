@@ -10,7 +10,7 @@ const language = document.getElementById("languageSelect");
 const loader = document.querySelector(".loader");
 
 
-document.getElementById("translationForm").addEventListener("submit", (e) => {
+document.getElementById("submit_btn").addEventListener("click", (e) => {
     e.preventDefault();
     if(textarea.value != '') {
     loader.style.visibility = "visible";
@@ -23,27 +23,39 @@ document.getElementById("translationForm").addEventListener("submit", (e) => {
     formData.append("text", text);
     formData.append("lang", lang);
     
+    formDataString = new URLSearchParams(formData).toString();
+    
     fetch(translateURL, {
         method: "POST",
+        body: formData,
         headers: {
-          "X-CSRFToken": csrftoken
+          "X-CSRFToken": csrftoken,
         },
-        body: formData
-    }).then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json(); // Assuming response is JSON
-    })
-    .then(data => {
-        outputArea.innerHTML = '';
-        loader.style.visibility = "hidden";
-        outputArea.innerHTML = data.translation;
-        document.getElementById("submit_btn").disabled = false;
-    })
-    .catch(error => {
-        // Handle any errors that occur during the fetch operation
-        console.error('Fetch error:', error);
-    });
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok.");
+          }
+          const reader = response.body.getReader();
+          console.log("inside response of streamer");
+          // Function to consume the streaming data
+          const processStream = ({ value, done }) => {
+            if (done) {
+                console.log("all done!");
+              return;
+            }
+            const chunk = new TextDecoder().decode(value);
+            outputArea.innerHTML = '';
+            loader.style.visibility = "hidden";
+            outputArea.innerHTML += chunk;
+            document.getElementById("submit_btn").disabled = false;
+            return reader.read().then(processStream);
+          };
+            return reader.read().then(processStream);
+          // }
+        })
+        .catch((error) => {
+          console.error("There was a problem with the fetch operation:", error);
+        });
     }
   });

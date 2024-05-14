@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.http import StreamingHttpResponse
 from . import preprocess
 from . import translate
 from django.contrib.auth.decorators import login_required
@@ -18,8 +19,9 @@ def te(request):
 
         print(text, target)
 
+        translation = None
         if text:
-            translation = preprocess.preprocess(text, target)
+            translation = StreamingHttpResponse(preprocess.preprocess(text, target), content_type='text/plain')
         with open("usage.log", "a+", encoding="utf-8") as log:
             log.seek(0)
             if len(log.read()) != 0:
@@ -27,5 +29,4 @@ def te(request):
             else:
                 log.write(str(datetime.now()) + "   " +request.user.username + "    " +str(len(text)))
             log.close()
-
-        return JsonResponse({'translation': translation})
+        return translation
