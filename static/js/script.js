@@ -32,30 +32,33 @@ document.getElementById("submit_btn").addEventListener("click", (e) => {
           "X-CSRFToken": csrftoken,
         },
       })
-        .then((response) => {
-          if (!response.ok) {
+      .then((response) => {
+        if (!response.ok) {
             throw new Error("Network response was not ok.");
-          }
-          const reader = response.body.getReader();
-          console.log("inside response of streamer");
-          // Function to consume the streaming data
-          const processStream = ({ value, done }) => {
+        }
+    
+        outputArea.innerHTML = '';
+        const reader = response.body.getReader();
+        console.log("inside response of streamer");
+    
+        const processStream = ({ value, done }) => {
             if (done) {
-                console.log("all done!");
-              return;
+                console.log("Stream complete");
+                loader.style.visibility = "hidden";
+                document.getElementById("submit_btn").disabled = false;
+                return;
             }
+    
             const chunk = new TextDecoder().decode(value);
-            outputArea.innerHTML = '';
-            loader.style.visibility = "hidden";
             outputArea.innerHTML += chunk;
-            document.getElementById("submit_btn").disabled = false;
+    
             return reader.read().then(processStream);
-          };
-            return reader.read().then(processStream);
-          // }
-        })
-        .catch((error) => {
-          console.error("There was a problem with the fetch operation:", error);
-        });
+        };
+    
+        reader.read().then(processStream);
+    })
+    .catch((error) => {
+        console.error("There was a problem with the fetch operation:", error);
+    });
     }
   });
