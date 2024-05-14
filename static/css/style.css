@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Leckerli+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 *{
   margin: 0;
   padding: 0;
@@ -7,22 +8,60 @@
 }
 
 body {
-    /* font-family: 'Arial', sans-serif; */
     margin: 0;
     padding: 0;
     background-color: rgb(255, 255, 255);
 }
 
-header {
-    background-color: white;
-    /* padding: 10px; */
-    text-align: center;
-    color: blue;
-    font-size: 24px;
-}
 
 hr{
   margin-top: 0;
+}
+
+.header-div * {
+  font-family: "Leckerli One", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.header-div {
+  background-color: white;
+  color: #0b5394;
+  font-size: 24px;
+  margin: 20px 15px 30px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-div h1{
+  margin: 0;
+}
+
+
+.logo {
+  width: calc(2.1rem + 1.1vw);
+}
+
+.logout * {
+  font-family: "PT Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+.logout {
+  text-align: right;
+}
+
+.logout a {
+  text-decoration: none;
+  color: #0b5394;
+  font-size: 15px;
+}
+
+@media screen and (max-width: 600px) {
+  .logout a {
+    font-size: 10px;
+  }
 }
 
 main {
@@ -78,12 +117,6 @@ select:hover,
 select:focus {
     border-color: blue; 
 } */
-
-.head-margin{
-  /* font-size: xx-small; */
-  margin-left: 20% !important;
-  /* transform: translate(-50%, 0%) !important; */
-}
 
 
 /* The container must be positioned relative: */
@@ -158,20 +191,8 @@ select:focus {
     /* color: #fff; */
   }
 
-input[type="submit"] {
-    background-color: blue;
-    color: #fff;
-    padding: 10px 15px;
-    cursor: pointer;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    width: 120px;
-}
-
-
 button {
-    background-color: blue;
+    background-color: #0b5394;
     color: white;
     padding: 10px 15px;
     border: none;
@@ -182,15 +203,17 @@ button {
 }
 
 
-input[type="submit"]:hover, button:hover, .clear a:hover {
-    background-color: #01037e;
+button:hover {
+  background-color: white;
+  color: #0b5394;
 }
 
-.logout{
-    /* background-color: transparent !important; */
-    color: #0000ff;
-    /* border: 6px solid #000 !important; */
+button:active {
+  color: #0b5394;
+  background-color: #ffffff;
+  box-shadow: 0 0 30px 1px #737373 inset;
 }
+
 
 .textcontainer {
     position: relative;
@@ -211,7 +234,7 @@ input[type="submit"]:hover, button:hover, .clear a:hover {
 }
 
 .clear a {
-  background-color: blue;
+  background-color: #0b5394;
   color: white !important;
   padding: 10px 15px !important;
   border: none !important;
@@ -219,20 +242,22 @@ input[type="submit"]:hover, button:hover, .clear a:hover {
   border-radius: 4px !important;
   font-size: 16px !important;
   width: 120px !important;
-    /* color:#0000003f !important; */
-    /* background-color: #000 !important; */
-    /* cursor: pointer; */
-    /* font-size: medium; */
-    /* font-weight: bold; */
 }
 
-/* .clear a:hover{
-    color: #000 !important;
-} */
+.clear a:hover{
+    color: #0b5394 !important;
+    background-color: #ffffff;
+}
+
+.clear a:active{
+  color: #0b5394 !important;
+  background-color: #ffffff;
+  box-shadow: 0 0 3px 1px #000 inset;
+}
 
 /* HTML: <div class="loader"></div> */
 .loader {
-  color: #00f;
+  color: #0b5394;
   width: 4px;
   margin-top: 21px;
   aspect-ratio: 1;
