@@ -14,10 +14,6 @@ body {
 }
 
 
-hr{
-  margin-top: 0;
-}
-
 .header-div * {
   font-family: "Leckerli One", cursive;
   font-weight: 400;
@@ -65,7 +61,7 @@ hr{
 }
 
 main {
-    max-width: 600px;
+    width: 50%;
     margin: 30px auto;
     background-color: white;
     padding: 20px;
@@ -82,7 +78,7 @@ textarea {
     box-sizing: border-box;
     resize: none;
     outline: none;
-    font-size: small;
+    font-size: medium;
     border: 1px dotted;
     border-color: transparent transparent lightgrey transparent;
     /* Hide the scrollbar
@@ -102,23 +98,6 @@ p {
 }
 
 
-/* select {
-    width: 25%;
-    padding: 10px;
-    margin-top: 10px;
-    margin-right: .5em;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: white;
-    transition: border-color 0.3s;
-}
-
-select:hover,
-select:focus {
-    border-color: blue; 
-} */
-
-
 /* The container must be positioned relative: */
 .custom-select {
     position: relative;
@@ -132,8 +111,8 @@ select:focus {
   .select-selected {
     background-color: transparent !important;
     border: 1px solid !important;
-    border-color: grey !important;
-    color: grey;
+    border-color: #0b5394 !important;
+    color: #0b5394;
   }
   
   /* Style the arrow inside the select element: */
@@ -145,12 +124,12 @@ select:focus {
     width: 0;
     height: 0;
     border: 6px solid transparent;
-    border-color: grey transparent transparent transparent;
+    border-color: #0b5394 transparent transparent transparent;
   }
   
   /* Point the arrow upwards when the select box is open (active): */
   .select-selected.select-arrow-active:after {
-    border-color: transparent transparent grey transparent;
+    border-color: transparent transparent #0b5394 transparent;
     top: 10px;
   }
   
@@ -168,7 +147,7 @@ select:focus {
     position: absolute;
     background-color: #ffffff;
     border-radius: 0px 0px 5px 5px;
-    border: 1px solid grey;
+    border: 1px solid #0b5394;
     border-top: transparent;
     top: 100%;
     left: 0;
@@ -177,7 +156,7 @@ select:focus {
   }
   
   .select-items div {
-    color: grey;
+    color: #0b5394;
     border-radius: 0;
   }
 
@@ -211,7 +190,7 @@ button:hover {
 button:active {
   color: #0b5394;
   background-color: #ffffff;
-  box-shadow: 0 0 30px 1px #737373 inset;
+  box-shadow: 0 0 30px 1px #0b5394 inset;
 }
 
 
@@ -228,18 +207,16 @@ button:active {
     /* border: 1px solid grey; */
     /* align-items: center; */
     text-align: center;
-    background-color: white;
     border-radius: 0px 0px 5px 5px;
-    padding: 0px 3px 0px 3px;
 }
 
 .clear a {
-  background-color: #0b5394;
-  color: white !important;
-  padding: 10px 15px !important;
+  /* background-color: #0b5394; */
+  color: #0b5394 !important;
+  padding: 10px 0 !important;
   border: none !important;
   cursor: pointer;
-  border-radius: 4px !important;
+  border-radius: 50% !important;
   font-size: 16px !important;
   width: 120px !important;
 }
@@ -250,22 +227,34 @@ button:active {
 }
 
 .clear a:active{
-  color: #0b5394 !important;
+  color: #e5dfdf !important;
   background-color: #ffffff;
-  box-shadow: 0 0 3px 1px #000 inset;
+  box-shadow: 0 0 3px 30px #e5dfdf inset;
 }
 
-/* HTML: <div class="loader"></div> */
+hr{
+  margin: 0 25% 0 25%;
+  opacity: 20%;
+}
+
+
+.divider {
+  position: relative;
+}
+
+.loader-container {
+  margin: 21px auto 0 auto;
+}
+
 .loader {
   color: #0b5394;
   width: 4px;
-  margin-top: 21px;
   aspect-ratio: 1;
   border-radius: 50%;
   box-shadow: 19px 0 0 7px, 38px 0 0 3px, 57px 0 0 0;
   transform: translateX(-13px);
   animation: l21 .5s infinite alternate linear;
-  display: none;
+  visibility: hidden;
 }
 
 @keyframes l21 {
