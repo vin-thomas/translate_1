@@ -1,6 +1,5 @@
 from django.urls import include, path
 from . import views
-# from ..rreports import views as repv
 
 app_name = 'users'
 
