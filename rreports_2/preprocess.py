@@ -107,7 +107,7 @@ def llm_response(query, summary_text, model=GPT_MODEL, temperature=0):
     system_message = "You are an expert at simplifying complex text for lay persons, by eliminating jargon. "
     user_message = f'''Please simplify the following text excerpted 
     from a larger piece titled {summary_text},
-    sentence by sentence: {query}'''
+    sentence by sentence explicitly maintaing the gender information: {query}'''
 
     messages = [
         {"role": "system", "content": system_message},
